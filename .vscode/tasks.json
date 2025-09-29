@@ -1,0 +1,66 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Project",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "Src/*.cpp",               
+        "Src/Rendering/*.cpp",
+        "Src/Window/*.cpp",
+        "Src/Input/*.cpp",
+        "Src/Rendering/Buffers/*.cpp",
+        "Src/Rendering/OpenGl/glad/glad.c",
+        "-IInclude",               
+        "-LLib",                  
+        "-lglfw3dll",              
+        "-lgdi32",                 
+        "-lopengl32",  
+        "-lassimp",            
+        "-I./Algebra/glm",                
+        "-o", 
+        "Bin/app.exe",          
+        "-g"                    
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"],
+      "detail": "Compiles all source files into executable"
+    },
+    {
+      "label": "Run Project",
+      "type": "shell",
+      "command": "./Bin/app.exe",
+      "dependsOn": "Build Project",
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Clean Build",
+      "type": "shell",
+      "command": "rmdir",
+      "args": [
+        "/s/q",
+        "bin"
+      ],
+      "windows": {
+        "command": "if exist bin rmdir /s/q bin"
+      },
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Rebuild Project",
+      "dependsOrder": "sequence",
+      "dependsOn": ["Clean Build", "Build Project"],
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}
