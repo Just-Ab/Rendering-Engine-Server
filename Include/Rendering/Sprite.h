@@ -20,8 +20,8 @@ public:
     void setTexture(const char* path);
     void setTexture(Texture _texture);
 
-    void draw(Shader& shader,unsigned int instances) override;
-    void draw(Shader& shader,std::vector<SpriteDataInstance>& instances) override;
+    // void draw(Shader& shader,unsigned int instances) override;
+    // void draw(Shader& shader,std::vector<SpriteDataInstance>& instances) override;
 
 };
 

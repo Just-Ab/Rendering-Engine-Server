@@ -2,6 +2,7 @@
 #define RENDERINGSERVER_H
 
 #include <Window/Window.h>
+#include <Rendering/Sprite.h>
 #include <vector>
 #include <string>
 #include <memory>
@@ -20,6 +21,9 @@ public:
         
         void createWindow(std::string name,unsigned int width,unsigned int height);
         Window* getWindow();
+
+
+        void createSprite();
 
         void beginFrame();
         void endFrame();
