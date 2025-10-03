@@ -1,18 +1,16 @@
 #version 330 core
 
-layout (location = 0) in vec3 vertpos;
-layout (location = 1) in vec2 vertexel;
-layout (location = 2) in vec2 shift;
-layout (std140) uniform matrices{
-    mat4 projection;
-    mat4 view;
-};
+layout (location = 0) in vec3 apos;
+layout (location = 1) in vec2 atexel;
+
 
 
 out vec2 fragtexel;
 
+uniform vec3 position;
+
 
 void main(){
-    gl_Position = projection*view*vec4(vertpos.xy+shift,1.0f,1.0f);
-    fragtexel = vertexel;
+    gl_Position = vec4(apos+position,1.0f);
+    fragtexel = atexel;
 }

@@ -3,6 +3,7 @@
 
 #include <Window/Window.h>
 #include <Rendering/Instances/ColorRectInstance.h>
+#include <Rendering/Instances/SpriteInstance.h>
 #include <Rendering/Shader.h>
 
 #include <vector>
@@ -21,9 +22,14 @@ private:
         std::unique_ptr<Window> window;
         
         std::deque<Shader> shaders;
+        
+        std::deque<Texture> textures;
+
         std::deque<ColorRectResource> colorRectResources;
         std::deque<ColorRectInstance> colorRectInstances;
 
+        std::deque<SpriteResource> spriteResources;
+        std::deque<SpriteInstance> spriteInstances;
 
         RenderingServer();
 
@@ -36,7 +42,13 @@ public:
 
         Shader* createShader(std::string vertexShader,std::string fragmentShader,std::string geometryShader="");
 
+        Texture* createTexture(std::string path);
+
+        ColorRectInstance* createColorRect(unsigned int count=1);
         ColorRectInstance* createColorRect(Shader* _shader,unsigned int count=1);
+
+        SpriteInstance* createSprite(Texture* texture,unsigned int count=1);
+        SpriteInstance* createSprite(Texture* texture,Shader* _shader,unsigned int count=1);
 
         void beginFrame();
         void drawFrame();

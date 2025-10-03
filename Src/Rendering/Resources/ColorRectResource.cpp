@@ -14,6 +14,7 @@ ColorRectResource::ColorRectResource(){
     vao.linkAttribute(vbo,0,3,GL_FLOAT,0,3*sizeof(float),0);
     vbo.unBind();
     ebo.unBind();
+    vao.unBind();
 
 }
 
