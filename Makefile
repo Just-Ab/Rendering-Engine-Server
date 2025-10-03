@@ -2,7 +2,7 @@ CXX = g++
 CXXFLAGS = -IInclude -I./Algebra/glm -g -std=c++17 -MMD -MP -fopenmp
 LDFLAGS = -LLib -lglfw3dll -lgdi32 -lopengl32 -lassimp -fopenmp
 
-SRC_DIRS = Src Src/Rendering Src/Window Src/Input Src/Physics Src/Rendering/Buffers Src/Rendering/OpenGl/glad Src/Game
+SRC_DIRS = Src Src/Rendering Src/Window Src/Input Src/Physics Src/Rendering/Buffers Src/Rendering/Instances Src/Rendering/Resources Src/Rendering/OpenGl/glad Src/Game
 SRCS_CPP = $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.cpp))
 SRCS_C = $(wildcard Src/Rendering/OpenGl/glad/glad.c)
 SRCS = $(SRCS_CPP) $(SRCS_C)

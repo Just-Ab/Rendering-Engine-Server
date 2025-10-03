@@ -8,6 +8,8 @@
                 "${workspaceFolder}/Include/Rendering/OpenGl/GLFW",
                 "${workspaceFolder}/Include/Algebra/glm",
                 "${workspaceFolder}/Include/Rendering",
+                "${workspaceFolder}/Include/Rendering/Resources",
+                "${workspaceFolder}/Include/Rendering/Instances",
                 "${workspaceFolder}/Include/Rendering/Buffers",
                 "${workspaceFolder}/Include/assimp",
                 "${workspaceFolder}/Include/Input",

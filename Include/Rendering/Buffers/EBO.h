@@ -13,8 +13,10 @@ class EBO
 private:
     unsigned ID;
 public:
-    
+    EBO();
     EBO(std::vector<unsigned int> indices);
+
+    void setIndices(std::vector<unsigned int> indices);
 
     unsigned int getId();
 

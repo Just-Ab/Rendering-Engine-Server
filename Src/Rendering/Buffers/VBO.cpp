@@ -1,60 +1,50 @@
 #include <Rendering/Buffers/VBO.h>
 
 
-    template<typename VertexT,typename InstanceDataT>
-    VBO<VertexT,InstanceDataT>::VBO(){
+    VBO::VBO(){
         glGenBuffers(1,&ID);
     }
 
-    template<typename VertexT,typename InstanceDataT>
-    VBO<VertexT,InstanceDataT>::VBO(std::vector<VertexT>& vertices){
+    VBO::VBO(const void* vertices,size_t size,GLenum usage){
         glGenBuffers(1,&ID);
-        setVertices(vertices);
+        setVertices(vertices,size,usage);
         
     }
     
-    template<typename VertexT,typename InstanceDataT>
-    void VBO<VertexT,InstanceDataT>::setVertices(std::vector<VertexT>& vertices){
+    void VBO::setVertices(const void* vertices,size_t size,GLenum usage){
         glBindBuffer(GL_ARRAY_BUFFER,ID);
-        glBufferData(GL_ARRAY_BUFFER,vertices.size()*sizeof(VertexT),vertices.data(),GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER,size,vertices,usage);
         glBindBuffer(GL_ARRAY_BUFFER,0);
     }
 
-    template<typename VertexT,typename InstanceDataT>
-    void VBO<VertexT,InstanceDataT>::setInstances(std::vector<InstanceDataT>& instances){
+    void VBO::setInstances(const void* instances,size_t stride,size_t count){
         glBindBuffer(GL_ARRAY_BUFFER,ID);
-        if(instancesAllocated<instances.size()){
-            glBufferData(GL_ARRAY_BUFFER,instances.size()*sizeof(InstanceDataT),instances.data(),GL_DYNAMIC_DRAW);
-            instancesAllocated = instances.size();
+        size_t size = stride*count;
+        activeInstances = count;
+        if(instancesAllocated!=count){
+            glBufferData(GL_ARRAY_BUFFER,size,instances,GL_DYNAMIC_DRAW);
+            instancesAllocated = count;
         }
         else{
-            glBufferSubData(GL_ARRAY_BUFFER,0,instances.size()*sizeof(InstanceDataT),instances.data());
+            glBufferSubData(GL_ARRAY_BUFFER,0,size,instances);
         }
         glBindBuffer(GL_ARRAY_BUFFER,0);
     }
 
-    template<typename VertexT,typename InstanceDataT>
-    void VBO<VertexT,InstanceDataT>::allocateData(size_t size,GLenum type){
+    void VBO::allocateData(size_t size,GLenum type){
         glBindBuffer(GL_ARRAY_BUFFER,ID);
         glBufferData(GL_ARRAY_BUFFER,size,NULL,type);
         glBindBuffer(GL_ARRAY_BUFFER,0);
     }
 
-    template<typename VertexT,typename InstanceDataT>
-    unsigned int VBO<VertexT,InstanceDataT>::getId() const{
+    unsigned int VBO::getId() const{
         return ID;
     }
 
-    template<typename VertexT,typename InstanceDataT>
-    void VBO<VertexT,InstanceDataT>::bind(){
+    void VBO::bind(){
         glBindBuffer(GL_ARRAY_BUFFER,ID);
     }
 
-    template<typename VertexT,typename InstanceDataT>
-    void VBO<VertexT,InstanceDataT>::unBind(){
+    void VBO::unBind(){
         glBindBuffer(GL_ARRAY_BUFFER,0);
     }
-
-template class VBO<ColorRectVertex,ColorRectDataInstance>;
-template class VBO<SpriteVertex,SpriteDataInstance>;
-template class VBO<MeshVertex,MeshDataInstance>;

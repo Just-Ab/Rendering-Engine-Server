@@ -19,43 +19,15 @@ enum FrameBufferTypes
         RBO_DEPTH_STENCIL
     };
 
+// struct ColorRectVertex{
+//     glm::vec3 position;
+// };
 
-template<typename vertexT>
-struct Shape{
-    std::vector<vertexT> vertices;
-    std::vector<unsigned int> indices;
-};
+// struct ColorRectDataInstance{
+//     glm::vec2 position;
+//     float hue;
 
-
-struct ColorRectVertex{
-    glm::vec3 position;
-};
-
-struct ColorRectDataInstance{
-    glm::vec2 position;
-    float hue;
-
-};
-
-struct SpriteVertex{
-    glm::vec3 position;
-    glm::vec2 texel;
-};
-
-struct SpriteDataInstance{
-    glm::vec2 position;
-};
-
-struct MeshVertex{
-    glm::vec3 position;
-    glm::vec3 normal;
-    glm::vec2 texel;
-};
-
-struct MeshDataInstance{
-    glm::mat4 model;
-    };
-
+// };
 
 
 

@@ -17,8 +17,7 @@ private:
 public:
 
     VAO();
-    template<typename VBOT>
-    void linkAttribute(VBOT&vbo,int index,int size,GLenum type,GLenum normalized,int stride,void* offset,unsigned int divisor = 0);
+    void linkAttribute(VBO&vbo,int index,int size,GLenum type,GLenum normalized,int stride,void* offset,unsigned int divisor = 0);
     void bind();
     void unBind();
 
