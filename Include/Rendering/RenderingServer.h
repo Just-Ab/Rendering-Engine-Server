@@ -4,7 +4,9 @@
 #include <Window/Window.h>
 #include <Rendering/Instances/ColorRectInstance.h>
 #include <Rendering/Instances/SpriteInstance.h>
+
 #include <Rendering/Shader.h>
+#include <Rendering/Camera2D.h>
 
 #include <vector>
 #include <deque>
@@ -21,9 +23,13 @@ private:
         
         std::unique_ptr<Window> window;
         
+        Camera2D* currentCamera=nullptr;
+
         std::deque<Shader> shaders;
         
         std::deque<Texture> textures;
+
+        std::deque<Camera2D> cameras;
 
         std::deque<ColorRectResource> colorRectResources;
         std::deque<ColorRectInstance> colorRectInstances;
@@ -41,6 +47,9 @@ public:
         Window* getWindow();
 
         Shader* createShader(std::string vertexShader,std::string fragmentShader,std::string geometryShader="");
+
+        Camera2D* createCamera2D(float width,float height);
+        void makeCamera2DCurrent(Camera2D* camera);
 
         Texture* createTexture(std::string path);
 

@@ -30,6 +30,17 @@ Shader* RenderingServer::createShader(std::string vertexShader,std::string fragm
     return &shaders.back();
 }
 
+
+Camera2D* RenderingServer::createCamera2D(float width,float height){
+    cameras.emplace_back(glm::vec3(0.0f,0.0f,0.0f),width,height,0.0f,1.0f);
+    return &cameras.back();
+}
+
+
+void RenderingServer::makeCamera2DCurrent(Camera2D* camera){
+    currentCamera=camera;
+}
+
 Texture* RenderingServer::createTexture(std::string path){
     textures.emplace_back();
     textures.back().createPathTexture(path);
@@ -80,9 +91,15 @@ void RenderingServer::drawFrame(){
         ColorRectInstance* inst=&colorRectInstances[i];
         inst->getResource()->bind();
         inst->getShader()->activate();
+
         inst->getShader()->setVec3("position",inst->getPosition());
         inst->getShader()->setVec3("color",{inst->getColor().r,inst->getColor().g,inst->getColor().b});
+        inst->getShader()->setMat4("projection",currentCamera->getProjection());
+        inst->getShader()->setMat4("view",currentCamera->getView());
+
         glDrawElements(GL_TRIANGLES,colorRectInstances[i].getResource()->indices.size(), GL_UNSIGNED_INT,0);
+        
+        inst->getShader()->disactivate();
         inst->getResource()->unbind();
     }
     //draw sprites
@@ -92,9 +109,14 @@ void RenderingServer::drawFrame(){
         inst->getResource()->bind();
         inst->getShader()->activate();
         inst->getTexture()->bind();
+
         inst->getShader()->setVec3("position",inst->getPosition());
+        inst->getShader()->setMat4("projection",currentCamera->getProjection());
+        inst->getShader()->setMat4("view",currentCamera->getView());
         glDrawElements(GL_TRIANGLES,spriteInstances[i].getResource()->indices.size(), GL_UNSIGNED_INT,0);
+        
         inst->getTexture()->unbind();
+        inst->getShader()->disactivate();
         inst->getResource()->unbind();
     }
     

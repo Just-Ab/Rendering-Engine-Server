@@ -194,7 +194,8 @@ build/Src/Rendering/RenderingServer.o: Src/Rendering/RenderingServer.cpp \
  Include/Algebra/glm/gtc/type_ptr.inl Include/FileTools.h \
  Include/Rendering/Instances/SpriteInstance.h \
  Include/Rendering/Resources/SpriteResource.h Include/Rendering/Texture.h \
- Include/Rendering/TextureLoader.h Include/Rendering/stb_image.h
+ Include/Rendering/TextureLoader.h Include/Rendering/stb_image.h \
+ Include/Rendering/Camera2D.h Include/Rendering/Camera.h
 Include/Rendering/RenderingServer.h:
 Include/Window/Window.h:
 Include/Rendering/OpenGl/glad/glad.h:
@@ -404,3 +405,5 @@ Include/Rendering/Resources/SpriteResource.h:
 Include/Rendering/Texture.h:
 Include/Rendering/TextureLoader.h:
 Include/Rendering/stb_image.h:
+Include/Rendering/Camera2D.h:
+Include/Rendering/Camera.h:
