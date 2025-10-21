@@ -5,7 +5,7 @@
 #include <Rendering/Instances/ColorRectInstance.h>
 #include <Rendering/Instances/SpriteInstance.h>
 
-#include <Rendering/Shader.h>
+#include <Rendering/ShaderProgram.h>
 #include <Rendering/Camera2D.h>
 
 #include <vector>
@@ -25,16 +25,16 @@ private:
         
         Camera2D* currentCamera=nullptr;
 
-        std::deque<Shader> shaders;
+        std::deque<ShaderProgram> shaderPrograms;
         
         std::deque<Texture> textures;
 
         std::deque<Camera2D> cameras;
 
-        std::deque<ColorRectResource> colorRectResources;
+        ColorRectResource *colorRectResource=nullptr;
         std::deque<ColorRectInstance> colorRectInstances;
 
-        std::deque<SpriteResource> spriteResources;
+        SpriteResource *spriteResource=nullptr;
         std::deque<SpriteInstance> spriteInstances;
 
         RenderingServer();
@@ -43,21 +43,22 @@ public:
         
         static RenderingServer* getSingleton();
         
-        void createWindow(std::string name,unsigned int width,unsigned int height);
+        void initServer(std::string name,unsigned int width,unsigned int height);
         Window* getWindow();
 
-        Shader* createShader(std::string vertexShader,std::string fragmentShader,std::string geometryShader="");
+        ShaderProgram* createShaderProgram(std::string vertexShaderProgram,std::string fragmentShaderProgram);
+        ShaderProgram* createShaderProgram(std::string vertexShaderProgram,std::string fragmentShaderProgram,std::string geometryShaderProgram);
 
-        Camera2D* createCamera2D(float width,float height);
+        Camera2D* createCamera2D(float width,float height,float near,float far);
         void makeCamera2DCurrent(Camera2D* camera);
 
         Texture* createTexture(std::string path);
 
-        ColorRectInstance* createColorRect(unsigned int count=1);
-        ColorRectInstance* createColorRect(Shader* _shader,unsigned int count=1);
+        ColorRectInstance* createColorRect();
+        ColorRectInstance* createColorRect(ShaderProgram* _ShaderProgram);
 
-        SpriteInstance* createSprite(Texture* texture,unsigned int count=1);
-        SpriteInstance* createSprite(Texture* texture,Shader* _shader,unsigned int count=1);
+        SpriteInstance* createSprite(Texture* texture);
+        SpriteInstance* createSprite(Texture* texture,ShaderProgram* _ShaderProgram);
 
         void beginFrame();
         void drawFrame();

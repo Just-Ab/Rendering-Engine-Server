@@ -5,9 +5,9 @@
 
 
 
-ColorRectInstance::ColorRectInstance(ColorRectResource* _resource,Shader* _shader){
+ColorRectInstance::ColorRectInstance(ColorRectResource* _resource,ShaderProgram* _shaderProgram){
     resource = _resource;
-    shader = _shader;
+    shaderProgram = _shaderProgram;
 }
 
 
@@ -18,6 +18,20 @@ ColorRectInstance::ColorRectInstance(ColorRectResource* _resource,Shader* _shade
         return position;
     }
 
+    void ColorRectInstance::setRotation(glm::vec3 _rotation){
+        rotation = _rotation;
+    }
+    const glm::vec3 ColorRectInstance::getRotation(){
+        return rotation;
+    }
+
+    void ColorRectInstance::setScale(glm::vec3 _scale){
+        scale = _scale;
+    }
+    const glm::vec3 ColorRectInstance::getScale(){
+        return scale;
+    }
+
     void ColorRectInstance::setColor(colorf _color){
         color = _color;
     }
@@ -25,12 +39,12 @@ ColorRectInstance::ColorRectInstance(ColorRectResource* _resource,Shader* _shade
         return color;
     }
 
-    void ColorRectInstance::setShader(Shader* _shader){
-        shader = _shader;
+    void ColorRectInstance::setShader(ShaderProgram* _shaderProgram){
+        shaderProgram = _shaderProgram;
     }
 
-    Shader* ColorRectInstance::getShader(){
-        return shader;
+    ShaderProgram* ColorRectInstance::getShader(){
+        return shaderProgram;
     }
 
     ColorRectResource* ColorRectInstance::getResource(){

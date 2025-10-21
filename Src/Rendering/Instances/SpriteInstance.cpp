@@ -5,9 +5,9 @@
 
 
 
-SpriteInstance::SpriteInstance(SpriteResource* _resource,Shader* _shader){
+SpriteInstance::SpriteInstance(SpriteResource* _resource,ShaderProgram* _shaderProgram){
     resource = _resource;
-    shader = _shader;
+    shaderProgram = _shaderProgram;
 }
 
 
@@ -18,6 +18,21 @@ SpriteInstance::SpriteInstance(SpriteResource* _resource,Shader* _shader){
         return position;
     }
 
+    void SpriteInstance::setRotation(glm::vec3 _rotation){
+        rotation = _rotation;
+    }
+    const glm::vec3 SpriteInstance::getRotation(){
+        return rotation;
+    }
+
+    void SpriteInstance::setScale(glm::vec3 _scale){
+        scale = _scale;
+    }
+    const glm::vec3 SpriteInstance::getScale(){
+        return scale;
+    }
+
+
     void SpriteInstance::setTexture(Texture* _texture){
         texture = _texture;
     }
@@ -25,12 +40,12 @@ SpriteInstance::SpriteInstance(SpriteResource* _resource,Shader* _shader){
         return texture;
     }
 
-    void SpriteInstance::setShader(Shader* _shader){
-        shader = _shader;
+    void SpriteInstance::setShader(ShaderProgram* _shaderProgram){
+        shaderProgram = _shaderProgram;
     }
 
-    Shader* SpriteInstance::getShader(){
-        return shader;
+    ShaderProgram* SpriteInstance::getShader(){
+        return shaderProgram;
     }
 
     SpriteResource* SpriteInstance::getResource(){

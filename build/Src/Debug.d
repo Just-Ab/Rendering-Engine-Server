@@ -177,7 +177,7 @@ build/Src/Debug.o: Src/Debug.cpp Include/Rendering/RenderingServer.h \
  Include/Algebra/glm/gtc/quaternion.inl \
  Include/Algebra/glm/gtc/epsilon.hpp \
  Include/Algebra/glm/gtc/../detail/setup.hpp \
- Include/Algebra/glm/gtc/epsilon.inl Include/Rendering/Shader.h \
+ Include/Algebra/glm/gtc/epsilon.inl Include/Rendering/ShaderProgram.h \
  Include/Algebra/glm/gtc/type_ptr.hpp \
  Include/Algebra/glm/gtc/../gtc/vec1.hpp \
  Include/Algebra/glm/gtc/../gtc/../ext/vector_bool1.hpp \
@@ -384,7 +384,7 @@ Include/Algebra/glm/gtc/quaternion.inl:
 Include/Algebra/glm/gtc/epsilon.hpp:
 Include/Algebra/glm/gtc/../detail/setup.hpp:
 Include/Algebra/glm/gtc/epsilon.inl:
-Include/Rendering/Shader.h:
+Include/Rendering/ShaderProgram.h:
 Include/Algebra/glm/gtc/type_ptr.hpp:
 Include/Algebra/glm/gtc/../gtc/vec1.hpp:
 Include/Algebra/glm/gtc/../gtc/../ext/vector_bool1.hpp:
