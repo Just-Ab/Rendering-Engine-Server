@@ -7,18 +7,18 @@ int main(){
 
     Camera2D* camera = RenderingServer::getSingleton()->createCamera2D(2.0f,2.0f,-4.0f,4.0f);
     RenderingServer::getSingleton()->makeCamera2DCurrent(camera);
-
+    
     Texture* texture = RenderingServer::getSingleton()->createTexture("Assets/Textures/socrat.jpg");
-    SpriteInstance* sprite = RenderingServer::getSingleton()->createSprite(texture);
-    sprite->setPosition({0.0f,0.0f,0.0f});
+    SpriteInstance* rects[10000];
+    for(int i =0;i<5000;i++){
+        rects[i]=RenderingServer::getSingleton()->createSprite(texture);
+        // rects[i]->setColor({0.4,0.3,0.6});
+        rects[i]->setPosition({(float)i*0.1f,0.0f,0.0f});
+        // std::cout<<"created: "<<i<<'\n';
+    }
 
-    ColorRectInstance* rect = RenderingServer::getSingleton()->createColorRect();
-    rect->setColor({1.0f,1.0f,0.0f});
-    rect->setPosition({0.5f,0.0f,0.0f});
-    rect->setRotation({0.0f,0.0f,180.0f});
     while (!RenderingServer::getSingleton()->getWindow()->shouldClose())
     {
-        sprite->setRotation({(float)sin(glfwGetTime()),0.0f,0.0f});
         RenderingServer::getSingleton()->beginFrame();
         RenderingServer::getSingleton()->drawFrame();
         RenderingServer::getSingleton()->endFrame();

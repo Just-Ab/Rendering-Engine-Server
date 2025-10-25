@@ -9,6 +9,7 @@ private:
     enum class LoadingMethod{PATHTEXTURE,NULLTEXTURE};
 
     unsigned int height,width;
+    std::string path;
     LoadingMethod method;
     GLenum internalFormat,format,contentType;
     
@@ -26,6 +27,7 @@ public:
     unsigned int getID();
     unsigned int getWidth();
     unsigned int getHeight();
+    std::string getPath();
 
 };
 

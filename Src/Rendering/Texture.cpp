@@ -8,6 +8,7 @@
 
     void Texture::createPathTexture(std::string path){
         method = LoadingMethod::PATHTEXTURE;
+        path=path;
         id = textureLoader.loadTexture2D(path);
     }
     void Texture::createNullTexture(unsigned int _width,unsigned int _height,GLenum _internalFormat,GLenum _format,GLenum _contentType){
@@ -39,4 +40,9 @@
     }
     unsigned int Texture::getHeight(){
         return height;
+    }
+
+
+    std::string Texture::getPath(){
+        return path;
     }

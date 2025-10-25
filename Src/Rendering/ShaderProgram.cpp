@@ -40,10 +40,12 @@
             return true;
         }
 
-        ShaderProgram::ShaderProgram(const char* vertexShaderPath,const char* fragmentShaderPath){
+        ShaderProgram::ShaderProgram(const char* _vertexShaderPath,const char* _fragmentShaderPath){
             unsigned int vertexShader,fragmentShader;
-            setupShader(&vertexShader,GL_VERTEX_SHADER,vertexShaderPath);
-            setupShader(&fragmentShader,GL_FRAGMENT_SHADER,fragmentShaderPath);
+            vertexShaderPath = _vertexShaderPath;
+            fragmentShaderPath = _fragmentShaderPath;
+            setupShader(&vertexShader,GL_VERTEX_SHADER,_vertexShaderPath);
+            setupShader(&fragmentShader,GL_FRAGMENT_SHADER,_fragmentShaderPath);
 
             unsigned int *shaders[2]={&vertexShader,&fragmentShader};
 
@@ -51,11 +53,14 @@
             glUseProgram(0);
         }
 
-        ShaderProgram::ShaderProgram(const char* vertexShaderPath,const char* fragmentShaderPath,const char* geometryShaderPath){
+        ShaderProgram::ShaderProgram(const char* _vertexShaderPath,const char* _fragmentShaderPath,const char* _geometryShaderPath){
             unsigned int vertexShader,fragmentShader,geometryShader;
-            setupShader(&vertexShader,GL_VERTEX_SHADER,vertexShaderPath);
-            setupShader(&fragmentShader,GL_FRAGMENT_SHADER,fragmentShaderPath);
-            setupShader(&geometryShader,GL_GEOMETRY_SHADER,geometryShaderPath);
+            vertexShaderPath = _vertexShaderPath;
+            fragmentShaderPath = _fragmentShaderPath;
+            geometryShaderPath = _geometryShaderPath;
+            setupShader(&vertexShader,GL_VERTEX_SHADER,_vertexShaderPath);
+            setupShader(&fragmentShader,GL_FRAGMENT_SHADER,_fragmentShaderPath);
+            setupShader(&geometryShader,GL_GEOMETRY_SHADER,_geometryShaderPath);
 
 
             unsigned int *shaders[3]={&vertexShader,&geometryShader,&fragmentShader};

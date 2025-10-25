@@ -5,11 +5,9 @@
 
 RenderingServer* RenderingServer::server = nullptr;
 
-
 RenderingServer::RenderingServer(){
-    
-}
 
+}
 
 RenderingServer* RenderingServer::getSingleton(){
     if (!server){
@@ -66,6 +64,13 @@ void RenderingServer::makeCamera2DCurrent(Camera2D* camera){
 }
 
 Texture* RenderingServer::createTexture(std::string path){
+    for (Texture& texture:textures)
+    {
+        if(texture.getPath()==path){
+            return &texture;
+        }
+    }
+    
     textures.emplace_back();
     textures.back().createPathTexture(path);
     return &textures.back();    
@@ -131,10 +136,10 @@ void RenderingServer::drawFrame(){
         inst->getResource()->unbind();
     }
     //draw sprites
+    spriteResource->bind();
     for (unsigned int i = 0; i < spriteInstances.size(); i++)
     {
         SpriteInstance* inst=&spriteInstances[i];
-        inst->getResource()->bind();
         inst->getShader()->activate();
         inst->getTexture()->bind();
 
@@ -153,9 +158,9 @@ void RenderingServer::drawFrame(){
         
         inst->getTexture()->unbind();
         inst->getShader()->disactivate();
-        inst->getResource()->unbind();
     }
-    
+    spriteResource->unbind();
+
 }
 
 void RenderingServer::endFrame(){
